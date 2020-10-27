@@ -1,0 +1,57 @@
+<h1>{{actionType}} product</h1>
+<form [formGroup]="productForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row">
+    <label class="control-label col-md-12">Description</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="description">
+    </div>
+    <span class="text-danger ml-3" *ngIf="description?.invalid && formDir.submitted">
+      Description is required.
+    </span>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label class="control-label">Brand</label>
+      <input class="form-control" type="text" formControlName="brand">
+      <span class="text-danger ml-3" *ngIf="brand?.invalid && formDir.submitted">
+        Brand is required.
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label class="control-label">Model</label>
+      <input class="form-control" type="text" formControlName="model">
+      <span class="text-danger ml-3" *ngIf="model?.invalid && formDir.submitted">
+        model is required.
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label class="control-label">Unit Price</label>
+      <input class="form-control" type="number" min="0.00" max="10000.00" step="0.01" formControlName="unitPrice">
+      <span class="text-danger ml-3" *ngIf="unitPrice?.invalid && formDir.submitted">
+        Unit price is required.
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label class="control-label">Discount Percentage</label>
+      <input class="form-control" type="number" min="0" max="100" step="1" formControlName="discountPercentage">
+      <span class="text-danger ml-3" *ngIf="discountPercentage?.invalid && formDir.submitted">
+        Discount percentage is required.
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-success float-right">Save</button>
+    <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>
+  </div>
+</form>

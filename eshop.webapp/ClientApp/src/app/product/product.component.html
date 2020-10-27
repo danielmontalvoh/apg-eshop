@@ -1,0 +1,10 @@
+<ng-container *ngIf="(product$ | async) as product; else loading">
+  <h1>{{ product.description }}</h1>
+  <div><span class="font-weight-bold">Brand:</span> {{ product.brand }}</div>
+  <div><span class="font-weight-bold">Model:</span> {{ product.model }}</div>
+  <div><span class="font-weight-bold">Unit Price:</span> {{ product.unitPrice | currency }}</div>
+  <div><span class="font-weight-bold">Discount Percentage:</span> {{ product.discountPercentage + '%' }}</div>
+  <div><span class="font-weight-bold">Status:</span> {{ product.status }}</div>
+  <div><span class="font-weight-bold">Created At:</span> {{ product.createdAt | date }}</div>
+  <div><span class="font-weight-bold">Modified At:</span> {{ product.modifiedAt | date }}</div>
+</ng-container>

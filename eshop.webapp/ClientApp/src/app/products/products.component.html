@@ -1,0 +1,35 @@
+<h1>Products</h1>
+
+<p *ngIf="!(products$ | async)"><em>Loading...</em></p>
+<p>
+  <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3">New product</a>
+</p>
+
+<table class="table table-sm table-hover" *ngIf="(products$ | async)?.length>0">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Description</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Unit Price</th>
+      <th>Discount Percentage</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of (products$ | async)">
+      <td>{{ product.productId }}</td>
+      <td><a [routerLink]="['/product/', product.productId]">{{ product.description }}</a></td>
+      <td>{{ product.brand }}</td>
+      <td>{{ product.model }}</td>
+      <td>{{ product.unitPrice | currency }}</td>
+      <td>{{ product.discountPercentage + '%' }}</td>
+      <td>{{ product.status }}</td>
+      <td><a [routerLink]="['/product/edit/', product.productId]" class="btn btn-primary btn-sm float-right">Edit</a></td>
+      <td><a [routerLink]="" (click)="delete(product.productId)" class="btn btn-danger btn-sm float-right">Delete</a></td>
+    </tr>
+  </tbody>
+</table>
